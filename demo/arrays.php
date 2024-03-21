@@ -10,17 +10,29 @@
 
     <?php
         $stuff = [
-            "Rafaelo",
-            "Ferero Rocher",
-            "My big shlong"
+            [
+                'name' => "Rafaelo",
+                'name2' => "Ferero Rocher",
+                'yooo' => "https://example.com"
+            ],
+            [
+                'name' => "Nutela",
+                'name2' => "Nestle",
+                'yooo' => "https://example.com"
+            ]
         ];
     ?>
-
+    
     <ul>
-       <?php foreach($stuff as $name) {
-            echo "<li>$name</li>";
-       }
-       ?>
+        <?php foreach ($stuff as $name) : ?>
+
+            <li>
+                <a href="<?= $name['yooo'] ?>">
+                    <?= $name['name']; ?>
+                </a> 
+            </li>
+
+        <?php endforeach; ?>
     </ul>
 </body>
 </html>
