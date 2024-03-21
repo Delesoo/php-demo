@@ -12,26 +12,43 @@
         $stuff = [
             [
                 'name' => "Rafaelo",
-                'name2' => "Ferero Rocher",
-                'yooo' => "https://example.com"
+                'author' => "Vaime",
+                'purchaseUrl' => "https://example.com",
+                'releaseYear' => '1992'
             ],
             [
                 'name' => "Nutela",
-                'name2' => "Nestle",
-                'yooo' => "https://example.com"
+                'author' => "Nestle",
+                'purchaseUrl' => "https://example.com",
+                'releaseYear' => '1943'
+            ],
+            [
+                'name' => "Chemikai",
+                'author' => "Nestle",
+                'purchaseUrl' => "https://example.com",
+                'releaseYear' => '1961'
             ]
         ];
+
+        function filteredByAuthor($stuff, $author) {
+            $filteredAuthor = [];
+
+            foreach ($stuff as $name) {
+                if ($name['author'] === $author) {
+                    $filteredAuthor[] = $name;
+                }
+            }
+            return $filteredAuthor;
+        }
     ?>
     
     <ul>
-        <?php foreach ($stuff as $name) : ?>
-
+        <?php foreach (filteredByAuthor($stuff, 'Vaime') as $name) : ?>
             <li>
-                <a href="<?= $name['yooo'] ?>">
-                    <?= $name['name']; ?>
+                <a href="<?= $name['purchaseUrl'] ?>">
+                    <?= $name['name']; ?> (<?=$name['releaseYear']; ?>) 
                 </a> 
             </li>
-
         <?php endforeach; ?>
     </ul>
 </body>
