@@ -30,20 +30,24 @@
             ]
         ];
 
-        function filteredByAuthor($stuff, $author) {
-            $filteredAuthor = [];
-
-            foreach ($stuff as $name) {
-                if ($name['author'] === $author) {
-                    $filteredAuthor[] = $name;
+       function filter ($items, $fn) {
+           $filteredItems = [];
+           
+           foreach ($items as $item) {
+               if ($fn($item)) {
+                    $filteredItems[] = $item;
                 }
             }
-            return $filteredAuthor;
-        }
+            return $filteredItems;
+        };
+
+        $filteredBooks = array_filter($stuff, function ($book) {;
+            return $book['releaseYear'] <= 2000;
+        });
     ?>
     
     <ul>
-        <?php foreach (filteredByAuthor($stuff, 'Vaime') as $name) : ?>
+        <?php foreach ($filteredBooks as $name) : ?>
             <li>
                 <a href="<?= $name['purchaseUrl'] ?>">
                     <?= $name['name']; ?> (<?=$name['releaseYear']; ?>) 
